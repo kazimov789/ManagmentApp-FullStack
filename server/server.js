@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { DUserData } = require("./data/users");
+const { DUserData,DUsersDataList } = require("./data/users");
 const PORT = process.env.PORT | 3001;
 
 const app = express();
@@ -9,13 +9,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.json({ systemMessage: "Working,Not Problem" });
 });
 
+app.get("/users", (_, res) => {
+    res.json(DUsersDataList);
+  });
 
 app.post("/login", (req, res) => {
-  if (
+  if (      
     req.body.email === DUserData.email &&
     req.body.password === DUserData.password
   ) {
@@ -26,7 +29,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register",(req,res)=>{
-    res.json({ token: "Register" });
+    res.json({ RegisterMSG: "Register" });
 })
 
 app.listen(PORT, () => {

@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./app/User/Login";
 import { ROUTES } from "./routes/consts";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { UserProvider } from "./context/UserContext";
-import React from "react";
-import axios from "axios";
+import { UserAuthProvider } from "./context/UserAuthContext";
+import { UserProvider } from "./context/UsersContext";
+import { UserList } from "./app/components/UserList";
 
 const queryClient = new QueryClient();
 
@@ -16,8 +16,16 @@ export function App() {
           <Route
             path={ROUTES.USER.LOGIN}
             element={
-              <UserProvider>
+              <UserAuthProvider>
                 <Login />
+              </UserAuthProvider>
+            }
+          />
+          <Route
+            path={ROUTES.USER.ALLDATAS}
+            element={
+              <UserProvider>
+                <UserList />
               </UserProvider>
             }
           />

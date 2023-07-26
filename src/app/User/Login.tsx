@@ -1,5 +1,5 @@
 import React from "react";
-import { useUser } from "../../hooks";
+import { useUserAuthicantion } from "../../hooks";
 import { ILoginUser } from "../../models";
 import { FadeLoader } from "react-spinners";
 import SweetAlert2 from "react-sweetalert2";
@@ -17,7 +17,7 @@ const initalSwalValue = {
 };
 
 export const Login: React.FC = () => {
-  const { mutateLoginUserApplication, isLoginLoading } = useUser();
+  const { mutateLoginUserApplication, isLoginLoading } = useUserAuthicantion();
 
   const [loginInputValue, setLoginInputValue] = React.useState<ILoginUser>(initialLoginValue);
   const [swalProps, setSwalProps] = React.useState(initalSwalValue);

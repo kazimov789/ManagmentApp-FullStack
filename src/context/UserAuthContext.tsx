@@ -4,7 +4,7 @@ import { ILoginUser } from "../models";
 import { useMutation, UseMutateAsyncFunction } from "react-query";
 import { AxiosResponse } from "axios";
 
-interface IUserContext {
+interface IUserAuthContext {
   mutateLoginUserApplication: UseMutateAsyncFunction<
     AxiosResponse<any, any>,
     unknown,
@@ -14,21 +14,21 @@ interface IUserContext {
   isLoginLoading: boolean;
 }
 
-export const UserContext = React.createContext<IUserContext>(null as any);
+export const UserAuthContext = React.createContext<IUserAuthContext>(null as any);
 
-export const UserProvider: React.FC<any> = ({ children }) => {
-  const { userService } = useService();
+export const UserAuthProvider: React.FC<any> = ({ children }) => {
+  const { userAuthService } = useService();
 
   const { mutateAsync: mutateLoginUserApplication, isLoading: isLoginLoading } =
     useMutation((requestBody: ILoginUser) =>
-      userService.loginUser(requestBody)
+    userAuthService.loginUser(requestBody)
     );
 
   return (
-    <UserContext.Provider
+    <UserAuthContext.Provider
       value={{ mutateLoginUserApplication, isLoginLoading }}
     >
       {children}
-    </UserContext.Provider>
+    </UserAuthContext.Provider>
   );
 };

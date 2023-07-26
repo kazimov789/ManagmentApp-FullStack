@@ -1,6 +1,6 @@
 import { EUserRoles } from "./enums";
 
-export interface IRegisterNewUserInfo {
+export interface IUserInfo {
     firstName:string,
     lastName:string,
     email:string,
