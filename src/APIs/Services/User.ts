@@ -3,7 +3,7 @@ import { HttpClient } from "../HTTPClients";
 
 export class UserService extends HttpClient{
     constructor() {
-        super("https://localhost:3001");
+        super("http://localhost:3001");
     }
 
     async getAllUsers(){

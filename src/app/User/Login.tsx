@@ -18,8 +18,8 @@ const initalSwalValue = {
 
 export const Login: React.FC = () => {
   const { mutateLoginUserApplication, isLoginLoading } = useUser();
-  const [loginInputValue, setLoginInputValue] =
-    React.useState<ILoginUser>(initialLoginValue);
+
+  const [loginInputValue, setLoginInputValue] = React.useState<ILoginUser>(initialLoginValue);
   const [swalProps, setSwalProps] = React.useState(initalSwalValue);
   const [isLogin, setIsLogin] = React.useState(false);
 
@@ -31,9 +31,7 @@ export const Login: React.FC = () => {
   );
 
   const handleLoginFormSumbit = React.useCallback(() => {
-    console.log(loginInputValue);
-
-    mutateLoginUserApplication(loginInputValue).catch(() => {
+    mutateLoginUserApplication(loginInputValue).catch((err) => {
       setSwalProps({
         show: true,
         title: "Danger",
@@ -49,7 +47,7 @@ export const Login: React.FC = () => {
     }, 1000);
     return <SweetAlert2 {...swalProps} />;
   }
-
+  
   return isLoginLoading ? (
     <FadeLoader color="#36d7b7" />
   ) : (

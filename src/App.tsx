@@ -3,6 +3,8 @@ import { Login } from "./app/User/Login";
 import { ROUTES } from "./routes/consts";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { UserProvider } from "./context/UserContext";
+import React from "react";
+import axios from "axios";
 
 const queryClient = new QueryClient();
 
