@@ -42,4 +42,24 @@
 
 .datas{
   display: flex;
+  justify-content: center;
+}
+
+.userCard {
+  margin-right: 30px;
+  width: 300px;
+}
+.userImg {
+  height: 200px;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: center;
+  font-weight: 900 !important;
+  font-size: 18px !important;
+}
+
+.userEmail{
+  margin-left: 15px !important;
 }

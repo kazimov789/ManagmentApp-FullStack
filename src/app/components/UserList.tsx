@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/consts";
+import { UserCard } from "./UserCard";
 
 export const UserList: React.FC = () => {
   const { usersDataList } = useUser();
@@ -27,8 +28,8 @@ export const UserList: React.FC = () => {
       <div className="datas">
         {usersDataList &&
           usersDataList.map((data) => (
-            <h1 key={data.email}>{data.firstName}</h1>
-          ))}
+<UserCard data={data}/>
+))}
       </div>
     </div>
   );
