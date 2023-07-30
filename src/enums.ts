@@ -3,3 +3,8 @@ export enum EUserRoles {
     FOUNDER = "Founder",
     INVESTOR = "Investor"
 }
+
+export enum EQueryKeys {
+    GetAllUsers = "getAllUsers",
+    UserLogOut = "logout"
+}

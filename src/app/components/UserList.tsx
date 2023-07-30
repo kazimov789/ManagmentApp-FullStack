@@ -1,11 +1,35 @@
 import React from "react";
 import { useUser } from "../../hooks";
+import { Button } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes/consts";
 
 export const UserList: React.FC = () => {
   const { usersDataList } = useUser();
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    axios.get("http://localhost:3001").then(() => {
+      localStorage.clear();
+      navigate(ROUTES.USER.LOGIN);
+    });
+  };
 
-  React.useEffect(() => {
-    console.log("UsersData", usersDataList);
-  }, []);
-  return <div>UserList</div>;
+  return (
+    <div className="userlist">
+      <div className="logout">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"/>
+        <h1>All Users List</h1>
+        <Button variant="contained" id="logout-btn" onClick={handleLogOut}>
+          LogOut
+        </Button>
+      </div>
+      <div className="datas">
+        {usersDataList &&
+          usersDataList.map((data) => (
+            <h1 key={data.email}>{data.firstName}</h1>
+          ))}
+      </div>
+    </div>
+  );
 };

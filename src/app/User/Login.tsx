@@ -4,6 +4,8 @@ import { ILoginUser } from "../../models";
 import { FadeLoader } from "react-spinners";
 import SweetAlert2 from "react-sweetalert2";
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes/consts";
 
 const initialLoginValue = {
   email: "",
@@ -22,7 +24,7 @@ export const Login: React.FC = () => {
   const [loginInputValue, setLoginInputValue] = React.useState<ILoginUser>(initialLoginValue);
   const [swalProps, setSwalProps] = React.useState(initalSwalValue);
   const [isLogin, setIsLogin] = React.useState(false);
-
+  const navigate = useNavigate();
   const handleLoginInputChanges = React.useCallback(
     ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) => {
       setLoginInputValue((previus) => ({ ...previus, [name]: value }));
@@ -31,7 +33,7 @@ export const Login: React.FC = () => {
   );
 
   const handleLoginFormSumbit = React.useCallback(() => {
-    mutateLoginUserApplication(loginInputValue).catch((err) => {
+    mutateLoginUserApplication(loginInputValue).then(()=>navigate(ROUTES.USER.ALLDATAS)).catch((err) => {
       setSwalProps({
         show: true,
         title: "Danger",
@@ -39,7 +41,7 @@ export const Login: React.FC = () => {
       });
       setIsLogin(true);
     });
-  }, [loginInputValue, mutateLoginUserApplication]);
+  }, [loginInputValue, mutateLoginUserApplication,navigate]);
 
   if (isLogin) {
     setTimeout(() => {

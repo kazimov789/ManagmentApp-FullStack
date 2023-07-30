@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { DUserData,DUsersDataList } = require("./data/users");
+const { DUserData,DUsersDataList,DLoginnedUserData } = require("./data/users");
 const PORT = process.env.PORT | 3001;
 
 const app = express();
@@ -22,11 +22,15 @@ app.post("/login", (req, res) => {
     req.body.email === DUserData.email &&
     req.body.password === DUserData.password
   ) {
-    res.json({ token: "YourTOKEN-CODE" });
+    res.json({ token: "YourTOKEN-CODE",user:DLoginnedUserData });
   } else {
     res.sendStatus(404);
   }
 });
+
+app.get("/logout",(req,res)=>{
+  res.json({ Message: "User is logouted" });
+})
 
 app.post("/register",(req,res)=>{
     res.json({ RegisterMSG: "Register" });

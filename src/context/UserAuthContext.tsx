@@ -2,11 +2,10 @@ import React from "react";
 import { useService } from "../APIs/Services";
 import { ILoginUser } from "../models";
 import { useMutation, UseMutateAsyncFunction } from "react-query";
-import { AxiosResponse } from "axios";
 
 interface IUserAuthContext {
   mutateLoginUserApplication: UseMutateAsyncFunction<
-    AxiosResponse<any, any>,
+    void,
     unknown,
     ILoginUser,
     unknown

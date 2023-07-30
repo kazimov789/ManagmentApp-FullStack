@@ -29,6 +29,12 @@ const DUsersDataList =
 },
 ]
 
+const DLoginnedUserData = {
+  firstName: "Name",
+  lastName: "Surname",
+  email:"loginned@gmail.com"
+}
+
 module.exports = {
-    DUserData,DUsersDataList
+    DUserData,DUsersDataList,DLoginnedUserData
 };
